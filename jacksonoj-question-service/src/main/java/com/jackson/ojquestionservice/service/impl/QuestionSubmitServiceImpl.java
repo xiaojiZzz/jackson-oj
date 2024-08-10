@@ -49,10 +49,6 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
     private UserFeignClient userFeignClient;
 
     @Resource
-    @Lazy
-    private JudgeFeignClient judgeFeignClient;
-
-    @Resource
     private MyMessageProducer myMessageProducer;
 
     /**
