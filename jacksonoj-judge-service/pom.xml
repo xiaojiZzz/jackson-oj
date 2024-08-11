@@ -102,7 +102,6 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.jackson.ojjudgeservice.JacksonojJudgeServiceApplication</mainClass>
-                    <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
