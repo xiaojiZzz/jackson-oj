@@ -1,0 +1,54 @@
+version: '3'
+services:
+  jacksonoj-gateway:
+    container_name: jacksonoj-gateway
+    build:
+      context: ./jacksonoj-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8204:8204"
+    networks:
+      - mynetwork
+
+  jacksonoj-user-service:
+    container_name: jacksonoj-user-service
+    build:
+      context: ./jacksonoj-user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8201:8201"
+    networks:
+      - mynetwork
+    depends_on:
+      - jacksonoj-gateway
+
+  jacksonoj-question-service:
+    container_name: jacksonoj-question-service
+    build:
+      context: ./jacksonoj-question-service
+      dockerfile: Dockerfile
+    ports:
+      - "8202:8202"
+    networks:
+      - mynetwork
+    depends_on:
+      - jacksonoj-gateway
+      - jacksonoj-user-service
+
+  jacksonoj-judge-service:
+    container_name: jacksonoj-judge-service
+    build:
+      context: ./jacksonoj-judge-service
+      dockerfile: Dockerfile
+    ports:
+      - "8203:8203"
+    networks:
+      - mynetwork
+    depends_on:
+      - jacksonoj-gateway
+      - jacksonoj-user-service
+      - jacksonoj-question-service
+
+# 网络，不定义的话就是默认网络
+networks:
+  mynetwork:
