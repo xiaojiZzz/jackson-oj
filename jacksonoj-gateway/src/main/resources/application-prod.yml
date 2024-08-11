@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: jacksonoj-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: jacksonoj-user-service
+          uri: lb://jacksonoj-user-service
+          predicates:
+            - Path=/jacksonoj/user/**
+        - id: jacksonoj-question-service
+          uri: lb://jacksonoj-question-service
+          predicates:
+            - Path=/jacksonoj/question/**
+        - id: jacksonoj-judge-service
+          uri: lb://jacksonoj-judge-service
+          predicates:
+            - Path=/jacksonoj/judge/**
+  main:
+    # reactive 表示应用程序是一个反应式 Web 应用程序
+    # 反应式编程是一种处理异步数据流的方法，旨在通过非阻塞的方式处理请求，以提高应用程序的性能和伸缩性。
+    web-application-type: reactive
+
+server:
+  port: 8204
+
+knife4j:
+  # 开启聚合接口文档
+  gateway:
+    # 1. 开启 gateway 聚合组件
+    enabled: true
+    # 2. 设置聚合模式采用 discover 服务发现的模式
+    strategy: discover
+    discover:
+      # 3. 开启 discover 模式
+      enabled: true
+      # 4. 聚合子服务全部为 Swagger2 规范的文档
+      version: swagger2

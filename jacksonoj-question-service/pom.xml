@@ -102,7 +102,6 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.jackson.ojquestionservice.JacksonojQuestionServiceApplication</mainClass>
-                    <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
